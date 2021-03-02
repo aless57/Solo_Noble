@@ -1,0 +1,45 @@
+algorithme :
+fonction resoudreSoloNoble(tab InOut : tableau chaîne[0..li-1, 0..co-1], li : entier, co : entier, billes : entier)
+  début
+    réussi <- faux
+    si billes = 1 alors
+      valide <- vrai
+      On ecrit toutes les solutions
+    sinon
+         i <- 0
+         j <- 0
+         tant que non réussi et i < li faire
+           j <- 0
+           tant que non réussi et j < co faire
+             si tab[i][j] = "." alors
+               On vérifie si un déplacement valide est possible
+	       Si oui, on l'effectue
+               tant que non réussi et On est pas arrivés à la fin des déplacements possibles faire
+                 réussi <- resoudreSoloNoble(billes - 1)
+                 si non réussi alors
+                   On effectue un retour arrière
+                   On vérifie si un nouveau déplacement valide est possible pour ce même trou
+	       	   Si oui, on l'effectue
+                 fsi
+               ftant
+             fsi
+             j <- j+1
+           ftant
+           i <- i+1
+         ftant
+         si réussi alors
+           On enregistre la solution
+         fsi
+         retourne réussi
+    fsi
+  fin
+
+lexique :
+
+- li : entier, le nombre de lignes de la grille
+- co : entier, le nombre de colonnes de la grille
+- tab InOut : tableau chaîne[0..li-1, 0..co-1], la grille du Solo Noble
+- billes : entier, le nombre de billes contenues actuellement dans la grille
+- réussi : booléen, vrai si on a résolu le Solo Noble, faux sinon
+- i : entier, indice donnant la ligne actuelle du tableau
+- j : entier, indice donnant la colonne actuelle du tableau
